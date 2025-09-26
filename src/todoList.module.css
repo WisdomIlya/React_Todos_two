@@ -116,6 +116,33 @@
     color: #6c757d;
 }
 
+/* Стили для поиска */
+.searchGroup {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #4facfe;
+}
+
+/* Подсветка найденного текста */
+.highlight {
+    background-color: #ffeb3b;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
 /* Анимации */
 @keyframes slideIn {
     from {
@@ -168,20 +195,20 @@
 }
 
 /* Скроллбар */
-.todo-list::-webkit-scrollbar {
+.todoList::-webkit-scrollbar {
     width: 6px;
 }
 
-.todo-list::-webkit-scrollbar-track {
+.todoList::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-.todo-list::-webkit-scrollbar-thumb {
+.todoList::-webkit-scrollbar-thumb {
     background: #c1c1c1;
     border-radius: 3px;
 }
 
-.todo-list::-webkit-scrollbar-thumb:hover {
+.todoList::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
 
