@@ -1,0 +1,229 @@
+/* Основной контейнер */
+.todoContainer {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Заголовок приложения */
+.todoHeader {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.todoTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Форма добавления задач */
+.todoForm {
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.inputGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.todoInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.todoInput:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+}
+
+.addBtn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.addBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+}
+
+.addBtn:active {
+    transform: translateY(0);
+}
+
+.addBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Контейнер списка задач */
+.todoList {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Отдельная задача */
+.todoItem {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f3f4;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+.todoItem:hover {
+    background: #f8f9fa;
+}
+
+.todoItem:last-child {
+    border-bottom: none;
+}
+
+.todoItem.completed {
+    opacity: 0.7;
+}
+
+/* Текст задачи */
+.todoText {
+    flex: 1;
+    font-size: 16px;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+.todoItem.completed .todoText {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.todoItem.removing {
+    animation: slideOut 0.3s ease forwards;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .todoContainer {
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .todoTitle {
+        font-size: 2rem;
+    }
+
+    .inputGroup {
+        flex-direction: column;
+    }
+
+    .addBtn {
+        width: 100%;
+    }
+
+    .todo-actions {
+        opacity: 1;
+    }
+}
+
+/* Скроллбар */
+.todo-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Loader */
+.loaderGradient {
+	margin: 20px auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#0000 10%, #3498db);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Чекбокс */
+.todoCheckbox {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.todoCheckbox.checked {
+    background: #4facfe;
+    border-color: #4facfe;
+}
+
+.todoCheckbox.checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
