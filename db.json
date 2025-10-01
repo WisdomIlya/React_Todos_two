@@ -1,3 +1,24 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "mg7yzogr0.y1tn74hoi7k",
+      "title": "Задача 1",
+      "completed": false
+    },
+    {
+      "id": "mg7yzsn20.udezyn0jm3i",
+      "title": "Задача А",
+      "completed": false
+    },
+    {
+      "id": "mg7yzutj0.cch0dxulgxh",
+      "title": "А",
+      "completed": false
+    },
+    {
+      "id": "mg7yzx420.i4bsxd9lavk",
+      "title": "Ав",
+      "completed": false
+    }
+  ]
 }

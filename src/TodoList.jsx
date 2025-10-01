@@ -1,12 +1,13 @@
 import styles from "./todoList.module.css";
 import { searchTodo } from "./utils";
 import { useTodos } from "./hooks/useTodos";
-import { useState } from "react";
+import { debounce } from "./utils";
+import { useState, useRef  } from "react";
 
 export const TodoList = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [isSorted, setIsSorted] = useState(false);
-
+	const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
 
 	const {todos,
 		inputValue,
@@ -20,13 +21,20 @@ export const TodoList = () => {
 		requestDeleteTodo,}
 	= useTodos();
 
+	const debouncedSearchRef = useRef(
+        debounce((query) => {
+			console.log('Debounce сработал! Поиск по:', query);
+            setDebouncedSearchQuery(query);
+        }, 300)
+    )
+
     const sortTodos = (todosArray) => {
         return [...todosArray].sort((a, b) =>
             a.title.localeCompare(b.title)
         );
     };
 
-    const filteredTodos = searchTodo(todos, searchQuery);
+    const filteredTodos = searchTodo(todos, debouncedSearchQuery);
     const sortedTodos = isSorted ? sortTodos(filteredTodos) : filteredTodos;
 
 	const handleAddTodo = () => {
@@ -55,6 +63,7 @@ export const TodoList = () => {
 
 	const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
+		debouncedSearchRef.current(event.target.value);
     };
 
 	return (
