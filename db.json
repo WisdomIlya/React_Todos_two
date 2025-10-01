@@ -1,14 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "mg1ejcq20.9lrg6gyogho",
-      "title": "New task",
-      "completed": false
-    },
-    {
-      "id": "mg1ejgxf0.x0jp4hit9a",
-      "title": "New task",
-      "completed": false
-    }
-  ]
+  "todos": []
 }

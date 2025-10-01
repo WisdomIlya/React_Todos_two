@@ -1,10 +1,12 @@
 import styles from "./todoList.module.css";
-import { handleKeyPress, searchTodo } from "./utils";
+import { searchTodo } from "./utils";
 import { useTodos } from "./hooks/useTodos";
 import { useState } from "react";
 
 export const TodoList = () => {
 	const [searchQuery, setSearchQuery] = useState('');
+	const [isSorted, setIsSorted] = useState(false);
+
 
 	const {todos,
 		inputValue,
@@ -18,12 +20,21 @@ export const TodoList = () => {
 		requestDeleteTodo,}
 	= useTodos();
 
-	const handleAddTodoKeyPress = (event) => {
-        handleKeyPress(event, 'Enter');
+    const sortTodos = (todosArray) => {
+        return [...todosArray].sort((a, b) =>
+            a.title.localeCompare(b.title)
+        );
     };
+
+    const filteredTodos = searchTodo(todos, searchQuery);
+    const sortedTodos = isSorted ? sortTodos(filteredTodos) : filteredTodos;
 
 	const handleAddTodo = () => {
         requestAddTodo(true);
+    };
+
+	const handleToggleSort = () => {
+        setIsSorted(!isSorted);
     };
 
 	const handleToggleTodo = (id, completed) => {
@@ -36,7 +47,11 @@ export const TodoList = () => {
         }
     };
 
-	const filteredTodos = searchTodo(todos, searchQuery);
+	const handleAddTodoKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleAddTodo();
+        }
+    };
 
 	const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -75,12 +90,20 @@ export const TodoList = () => {
 					>
 						Добавить задачу
 					</button>
+
+					<button
+                        className={`${styles.sortBtn} ${isSorted ? styles.sortBtnActive : ''}`}
+                        onClick={handleToggleSort}
+                        title={isSorted ? "Отключить сортировку" : "Сортировать по алфавиту"}
+                    >
+                        {isSorted ? 'A-Z ✓' : 'A-Z'}
+                    </button>
             	</div>
 
 				{isLoader ? (
 					<div className={styles.loaderGradient}></div>
 				) : ( <ul className={styles.todoList}>
-						{filteredTodos.map(( todo ) => (
+						{sortedTodos.map(( todo ) => (
 							<li key={todo.id} className={styles.todoItem}>
 								<input id={todo.id}
 								type="checkbox"

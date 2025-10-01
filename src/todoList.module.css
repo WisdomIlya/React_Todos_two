@@ -75,6 +75,33 @@
     cursor: not-allowed;
 }
 
+
+/* Кнопка удаления задачи */
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.deleteBtn {
+    color: #ffc107;
+}
+
+.deleteBtn:hover {
+    background: #fff3cd;
+}
+
+.deleteBtn {
+    color: #dc3545;
+}
+
+.deleteBtn:hover {
+    background: #f8d7da;
+}
+
 /* Контейнер списка задач */
 .todoList {
     max-height: 400px;
@@ -246,4 +273,35 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 12px;
+}
+
+/* Кнопка сортировки */
+.sortBtn {
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.sortBtn:hover {
+    background: #e9ecef;
+    border-color: #4facfe;
+    color: #4facfe;
+}
+
+.sortBtnActive {
+    background: #4facfe;
+    border-color: #4facfe;
+    color: white;
+}
+
+.sortBtnActive:hover {
+    background: #3a9df5;
+    border-color: #3a9df5;
 }
